@@ -1,0 +1,293 @@
+
+/*           Media Css here
+=======================================*/
+@media screen and (max-width: 1367px) {
+	.theme_table thead tr > th {font-size: 14px; height: 50px; }
+	.main_title h2 {font-size: 22px; }
+    .header_top {padding: 0px; }
+	
+	.nav_menu_block {padding: 15px 0px; }
+    .theme_table tbody tr > td {padding: 10px 12px; }
+	table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after, table.dataTable thead .sorting_asc_disabled:after, table.dataTable thead .sorting_desc_disabled:after {
+	    bottom: 14px;;
+	}
+}
+
+@media screen and (max-width: 1199px) {
+	.srch_inp_group {position: relative; min-width: 215px; }
+	.notify_status li > a {display: block; padding: 5px 10px; color: #06043d; font-size: 15px; }
+	.main_title h2 {margin-right: 15px; }
+	
+	.add_moreBtn .btn {padding: 8px 20px; }
+	.search_block {margin-right: 15px; }
+	.main_title h2 {font-size: 20px; margin-right: 10px; }
+	.srch_inp_group {position: relative; min-width: 200px; width: 210px; }
+	
+	.tc_tabs_cont .nav-tabs > li > a {padding: 10px 20px; font-size: 15px; }
+	.theme-form .form-control, .theme-form input, .theme-form input[type="text"], .theme-form input[type="email"], 
+	.theme-form input[type="number"] {height: 40px; font-size: 14px; }
+	.upload_file {height: 40px; }
+	.theme-form .lable-cntrl {font-size: 14px; margin-bottom: 6px; }
+	
+	.upload_file span > i {line-height: 36px; }
+	.form-submit {text-align: center; }
+	.cmp_prof_pic {height: 300px; }
+	.theme-form .form-group {margin-bottom: 15px; }
+
+	.stkhldr_body {padding: 20px 20px; }
+	.s_holder_cat > h4 {font-size: 16px; }
+	.s_hldr_item span {font-size: 16px; }
+	.stackholders {width: 45%; }
+	
+	.deed_pdf_doc {width: 55%; }
+	.customradio {font-size: 14px; }
+	.add_d_col {font-size: 15px; width: 50%; }
+	
+	.view_deed_data {padding: 20px 60px 20px 20px; }
+	.add_deed_data {padding: 20px 20px; }
+	.theme-form textarea {height: auto !important; }
+
+}
+
+
+@media screen and (max-width: 991px) {
+
+	.theme_input_group .form-control, 
+	.theme_input_group input[type="email"] {height: 40px; font-size: 14px; }
+	.field-icon {width: 40px; padding: 10px; }
+	.signIn-sec {padding: 85px 0px 50px; }
+	
+	.head_ttl_block {margin: 25px 0px 20px; }
+	.head_ttl_lft, .head_ttl_rht {max-width: 100%; -ms-flex: 0 0 100%; flex: 0 0 100%; -webkit-box-pack: justify; -ms-flex-pack: justify; justify-content: space-between; }
+	.head_ttl_lft {margin-bottom: 10px; border-bottom: 1px solid #dee2e6; padding-bottom: 10px; }
+	
+	.main_title h2 {font-size: 20px; margin-right: 0px; }
+	.srch_inp_group input {height: 40px; padding: 5px 50px 5px 20px; }
+	.btn-search {height: 40px; width: 40px; }
+	.btn-theme {padding: 6px 25px; font-size: 15px; height: 40px; }
+	
+	.nav_main_menu li > a {font-size: 15px; line-height: 18px; padding: 10px 12px; }
+	.nav_menu_block {padding: 10px 0px; }
+	.nav_main_menu li > a >i.fa {margin-right: 10px; font-size: 18px; }
+	.brand_logo {padding: 8px 0px; }
+	
+	.nav_p_img {width: 40px; height: 40px; }
+	.nav_p_name {font-size: 16px; }
+	.notify_count {font-size: 22px; }
+	.notify_status li > a {font-size: 14px; }
+	
+	.bdg_lbl {width: 22px; height: 22px; font-size: 12px; }
+	.notify_count .count {width: 17px; height: 17px; line-height: 16px; top: 5px; right: -3px; }
+	
+	.notify_count {padding: 5px; width: 30px; height: 30px; }
+	.notifications {margin-right: 20px; }
+	.profile_setting .profile_block > a {padding: 0px; }
+	
+	.nav_user_prof {padding: 15px 0px; }
+	.theme_table tbody tr > td {padding: 8px 12px; }
+	.srch_inp_group {position: relative; min-width: 360px; width: 100%; }
+
+	.deed_pdf_doc, .stackholders {width: 100%; padding: 0px; }
+	.deed_pdf_doc {margin-bottom: 30px; }
+	.deed_filter_by > h4 {font-size: 18px; }
+	
+	.select_sort {height: 40px; }
+	.select_sort > span {width: 90px; padding: 8px 5px }
+	.deed_doc_status h4 {font-size: 16px; }
+	
+	.stage_status strong {font-size: 16px; }
+	.stage_notify li > a {font-size: 14px; }
+	.modal-dialog {max-width: 640px; }
+	
+	.mdl_header {padding: 15px; }
+	.mdl_header h4 {font-size: 18px; }
+	.lead_text p {font-size: 14px; line-height: 20px; }
+	.sec_heading {font-size: 17px; }
+	
+	.drag_desc {padding: 6px 50px 6px 20px; }
+	.level_item li p {line-height: 20px; font-size: 14px; }
+	.sec_subsec_btns {margin-top: 25px; }
+	.add_d_col.width_50 {width: 100%; }
+	
+	.accrdn_head h3 {font-size: 16px; }
+	.accrdn_body {margin-top: 15px; padding-top: 15px; }
+	.accordian_card {padding: 12px 15px; }
+	.level_item {padding-left: 25px; }
+	
+	.setting_prof_img {width: 260px; }
+	.usr_pic_circle {width: 145px; height: 145px; }
+	.upl_inp_set {max-width: 200px; padding: 10px 25px; font-size: 14px; }
+	
+	.setting_prof_desc {padding-right: 30px; width: calc(100% - 260px); }
+	.set_cont_box {padding: 25px; }
+}
+
+@media screen and (max-width: 767px) {
+	.signIn-sec {padding: 65px 0px 50px; }
+	.form-boxs {max-width: 100%; min-width: 100%; }
+	
+	.form-body {padding: 25px 15px 35px; }
+	.form-heading {padding: 10px 15px; }
+	.form-heading img {max-width: 165px; }
+	.theme_input_group .form-control, .theme_input_group input[type="email"] {height: 36px; padding-left: 34px; }
+	
+	.field-icon {padding: 7px; width: 34px; }
+	.log_usr_action label {font-size: 13px; }
+	.forget-pwd {font-size: 13px; }
+	.btn-theme {padding: 5px 20px; height: 36px; font-size: 14px; }
+
+	.form-body p {font-size: 14px; line-height: 20px; }
+	.form-body .lead_txt {margin-bottom: 30px; }
+	.footer {padding: 12px 0px; }
+	.copyright {font-size: 13px; }
+	.sign_wrapper, .wrapper {min-height: calc(100vh - 48px); }
+
+	.navbar-toggle .icon-bar {width: 24px; height: 3px; border-radius: 0px; background: #349af3; }
+	.brand_logo {padding: 8px 15px; }
+	.brand_logo img {max-width: 175px; }
+	.navbar-header {border-bottom: 1px solid #dee2e6; }
+	.nav_user_prof {float: none; width: 100%; padding: 6px 0px; text-align: center; }
+	
+	.navbar-toggle {margin: 12px 10px 12px 0px; }
+	.nav_menu_block {position: absolute; left: 0; right: 0; background: #349af3; z-index: 99; margin-top: -52px; padding: 0px; }
+	.nav_main_menu {width: 100%; position: relative; margin: 0px; padding: 0px 15px; }
+	.nav_main_menu li > a {line-height: 18px; padding: 12px 0px; font-weight: 400; font-size: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+	.nav_main_menu li > a:after {display: none; }
+	
+	.dataTables_length {position: absolute; right: 0; bottom: 5px; padding: 5px 20px; z-index: 9; left: 0px; }
+	.dataTables_paginate > a, .dataTables_paginate > span > a {float: none; }
+	.dataTables_paginate {bottom: 64px; padding: 0px 15px; left: 0; text-align: center !important; margin: 0 auto !important; float: none !important; width: 100%; }
+	
+	.theme_table .table_data {margin: 0px !important; }
+	.table-responsive {border: hidden; }
+	.main_title h2 {font-size: 18px; }
+    .notify_status li > a {font-size: 13px; }
+	.bdg_lbl {width: 20px; height: 20px; font-size: 12px; line-height: 16px; }
+	
+	.notify_status li > a {padding: 3px 10px; }
+	.notify_status li::after {height: 25px; }
+	.srch_inp_group input {height: 36px; padding: 5px 40px 5px 15px; }
+	.btn-search {height: 36px; width: 40px; padding: 6px 5px; }
+	
+	.srch_inp_group {min-width: 185px; }
+	.add_moreBtn .btn {padding: 8px 15px; }
+	.white_box {padding: 30px 20px; }
+	.form-submit {text-align: center; }
+	
+	.theme-form .form-control, .theme-form input, 
+	.theme-form input[type="text"], .theme-form input[type="email"], 
+	.theme-form input[type="number"] {height: 36px; }
+	
+	.upload_file {height: 36px; }
+	.upload_file span > i {line-height: 32px; }
+	.theme-form .form-group {margin-bottom: 12px; }
+	
+	.notifications {margin-right: 20px; }
+	div.dataTables_wrapper div.dataTables_length select {height: 30px; }
+	.tc_tabs_cont .nav-tabs > li > a {padding: 10px 15px; font-size: 14px; }
+
+	.deed_doc_status {-webkit-box-align: center; -webkit-align-items: center; -ms-flex-align: center; align-items: center; -webkit-box-pack: center; -webkit-justify-content: center; -ms-flex-pack: center; justify-content: center; }
+
+	.deed_pdf_view {min-height: 480px; max-height: 480px; }
+	.deed_filter_by form.theme-form {width: 100%; }
+	.deed_filter_by > h4 {width: 100%; margin-bottom: 10px; font-size: 17px; }
+	
+	.select_sort {max-width: 100%; min-width: 100%; }
+	.deed_filter_by {margin-bottom: 20px; }
+	.deed_block_sec .white_box {margin-bottom: 20px; }
+	
+	.s_hldr_item {display: block; height: auto; }
+	.upd_s_holder input {margin: 0px 10px 0px 0px; }
+	.s_hldr_item::after {top: 15px; transform: none; }
+	
+	.s_hldr_view {margin-bottom: 5px; }
+	.s_holder_list {padding-left: 20px; }
+	.stkhldr_body {padding: 20px 15px; }
+	
+	.s_hldr_item span {font-size: 14px; }
+	.stkhldr_head h3 {font-size: 16px; }
+	.accordian_card {padding: 15px 20px; }
+	
+	.add_d_col {font-size: 14px; width: 100%; padding: 5px 0px; }
+	.accordian_card {padding: 10px 20px; }
+	.accrdn_head .add_field {font-size: 0px; width: 32px; height: 32px; padding: 5px; line-height: 22px; }
+	
+	.accrdn_head .add_field > i.fa {font-size: 16px; }
+	.accordian_card {padding: 10px 15px; }
+	.view_deed_data {padding: 15px 40px 15px 12px; }
+	.btn-trash {width: 32px; height: 32px; font-size: 16px; }
+	
+	.del_deed_data {margin: 8px; }
+	.drag_drop_box {padding-right: 80px; }
+	.level_item {padding-left: 15px; }
+	
+	.sec_heading {font-size: 16px; }
+	.sec_subsec_btns .btn-theme {margin-left: 10px; min-width: 125px; }
+	.sec_subsec_btns {text-align: center; }
+	
+	.drag_drop_box {padding-right: 0; border: 1px solid #efefef; }
+	.sec_edt_del {position: static; text-align: right; padding-right: 15px; }
+    .drag_desc {clear: both; margin-bottom: 30px; border: hidden; }
+	.sec_heading {font-size: 16px; width: 75%; }
+	
+	.sec_main_ttl {align-items: start; -webkit-box-align: start; -webkit-align-items: start; }
+	.sec_edit_del > li > a {color: #359af3; padding: 6px; width: 30px; height: 30px; font-size: 0px; display: inline-block; border-radius: 50%; border: 1px solid #ddd; line-height: 16px; }
+	.sec_edit_del > li > a > i {font-size: 14px; }
+	.sec_edit_del {display: flex; }
+	
+	.deed_s_levels {padding-left: 15px; }
+	.drag_drop_txt p {font-size: 14px; }
+	.drag_drop_txt {padding: 5px 15px 5px 30px; }
+	.deed_sect_box {margin-bottom: 15px; padding: 20px; }
+	.deed_s_levels {padding-left: 10px; }
+	
+	.setting_details {-webkit-box-direction: unset; -webkit-flex-direction: unset; -ms-flex-direction: unset; flex-direction: unset; }
+	.setting_prof_img {width: 100%; margin-bottom: 30px; }
+	.upl_inp_set {max-width: 200px; padding: 9px 25px; font-size: 14px; }
+	
+	.setting_prof_desc {padding-right: 0; width: 100%; }
+	.sttng_heading h3 {font-size: 16px; }
+	.sttng_heading {margin-bottom: 20px; }
+	.usr_pic_circle {width: 120px; height: 120px; }
+	.set_cont_box {padding: 20px; }
+	
+	.mdl_header h4 {font-size: 17px; }
+	.mdl_header .close {font-size: 24px; }
+	.modal-content {margin: 0px 15px; }
+	.mdl_body {padding: 20px 15px; }
+	.upd_cmp_details {display: block; }
+	
+	.upl_cmp_img {display: block; width: 100%; text-align: center; margin-bottom: 20px; }
+	.cmp_prof_pic {height: 265px; margin: 0 auto; }
+	.upd_cmp_desc {display: block; width: 100%; padding-left: 0px; }
+	.select_sort > span {width: 70px; padding: 9px 5px; font-size: 14px; }
+	.theme_modelBox .theme_default_table {padding: 20px 10px; }
+
+}
+
+
+@media screen and (max-width: 479px) {
+    .head_ttl_lft .main_title {width: 100%; }
+	.head_ttl_lft {display: block; }
+	.main_title h2 {font-size: 17px; margin-bottom: 10px; text-align: center; }
+	.head_ttl_rht {display: block; width: 100%; text-align: center; }
+	
+	.search_block {width: 100%; }
+	.add_moreBtn {margin-top: 10px; margin-left: 0px; }
+	.srch_inp_group {position: relative; min-width: 100%; width: 100%; }
+	.add_moreBtn .btn {display: block; width: 100%; font-size: 14px; }
+	
+	.notify_status {text-align: center; }
+	.search_block {margin-right: 0px; }
+	.form-submit .btn-theme {min-width: 100%; margin-right: 0; width: 100%; display: block; margin-top: 15px; }
+	.theme-form select {background-position: 96% center; }
+
+	.deed_doc_status {display: block; width: 100%; text-align: center; }
+	.deed_doc_status h4 {font-size: 16px; margin-bottom: 10px; margin-right: 0px; }
+	
+	.stage_status {padding-left: 0px; }
+	.stage_status::after {display: none; }
+	.deed_pdf_view {min-height: 355px; max-height: 355px; }
+	
+	.sec_subsec_btns .btn-theme {min-width: 100%; margin-top: 10px; margin-left: 0px; width: 100%; }
+}
