@@ -1,10 +1,10 @@
 import { bookConstants, } from '../_constants';
 import { bookService } from '../_services';
-import { alertActions } from './';
+import { alertActions } from '.';
 import { history } from '../_helpers';
 
 export const bookActions = {
-    getAllBooks,
+    getAllRoles,
     addBook,
     getBook,
     editBook,
@@ -12,10 +12,10 @@ export const bookActions = {
     getOutOfStockBooks
 };
 
-function getAllBooks() {
+function getAllRoles() {
     return dispatch => {
         dispatch(request());
-        bookService.getAllBooks()
+        bookService.getAllRoles()
             .then(
                 books => {
                     dispatch(success(books));

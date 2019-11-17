@@ -6,9 +6,9 @@ import { history } from '../_helpers';
 import { PrivateRoute } from '../_components'; 
 import { LoginPage } from '../LoginPage';
 import { SignUpPage } from '../SignUpPage'; 
-import { Book } from '../Book';  
+import { Roles } from '../Roles';  
 import { alertActions } from '../_actions';
-import { AddBook } from '../AddBook';
+import { AddRole } from '../AddRole';
 import { EditBook } from '../EditBook/EditBook';
 import { StockBook } from '../StockBook/StockBook';
 
@@ -37,10 +37,10 @@ class App extends React.Component {
                     }
                     <Router history={history}>
                         <div>
-                            <PrivateRoute exact path="/" component={Book} /> 
+                            <PrivateRoute exact path="/" component={Roles} /> 
                             <PrivateRoute exact path="/outofstock" component={StockBook} /> 
-                            <PrivateRoute exact path="/dashboard" component={Book} /> 
-                            <PrivateRoute exact path="/addbook" component={AddBook} />    
+                            <PrivateRoute exact path="/dashboard" component={Roles} /> 
+                            <PrivateRoute exact path="/addrole" component={AddRole} />    
                             <PrivateRoute exact path="/editbook" component={EditBook} />    
                             <Route path="/login" component={LoginPage} />
                             <Route path="/signup" component={SignUpPage} />   

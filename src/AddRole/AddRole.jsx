@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer.jsx';
 import { userActions, bookActions } from '../_actions/index.js';
 import { history } from '../_helpers';
 
-class AddBook extends React.PureComponent {
+class AddRole extends React.PureComponent {
 
 
     constructor(props) {
@@ -84,7 +84,7 @@ class AddBook extends React.PureComponent {
                             <section className="head_ttl_block">
                                 <div className="head_ttl_lft">
                                     <div className="main_title">
-                                        <h2>Add Book</h2>
+                                        <h2>Add Role</h2>
                                     </div> 
                                 </div>
                             </section>
@@ -173,5 +173,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedAddBook = connect(mapStateToProps)(AddBook);
-export { connectedAddBook as AddBook };
+const connectedAddRole = connect(mapStateToProps)(AddRole);
+export { connectedAddRole as AddRole };

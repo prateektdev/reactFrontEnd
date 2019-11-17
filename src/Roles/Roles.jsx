@@ -5,7 +5,7 @@ import { Header } from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
 import { userActions, bookActions } from '../_actions';
 import { history } from '../_helpers';
-class Book extends React.Component {
+class Roles extends React.Component {
 
     constructor(props) {
         super(props);
@@ -38,7 +38,7 @@ class Book extends React.Component {
     } 
 
     componentDidMount() {
-        this.props.dispatch(bookActions.getAllBooks());
+        this.props.dispatch(bookActions.getAllRoles());
     }
 
     handleDeleteUser(id) {
@@ -49,7 +49,7 @@ class Book extends React.Component {
         this.props.dispatch(bookActions.getBook(id));
     }
     addBook(){
-        history.push("/addbook") ;
+        history.push("/addrole") ;
     }
     outOfStockBooks(){
         history.push("/outofstock") ;
@@ -150,5 +150,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedBook = connect(mapStateToProps)(Book);
-export { connectedBook as Book };
+const connectedRoles = connect(mapStateToProps)(Roles);
+export { connectedRoles as Roles };

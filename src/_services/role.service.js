@@ -3,7 +3,7 @@ import axios from 'axios';
 var token = localStorage.getItem("token"); 
 
 export const bookService = {   
-    getAllBooks,  
+    getAllRoles,  
     addBook, 
     getBook,   
     editBook,    
@@ -12,10 +12,10 @@ export const bookService = {
 }; 
   
   
-function getAllBooks() {
+function getAllRoles() {
     return axios({
         method: 'GET',
-        url: `${config.apiUrl}/rest/book/getall`,
+        url: `${config.apiUrl}/role/get/all`,
         headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token }
     }).then(handleResponse);
 } 
