@@ -5,7 +5,7 @@ import { userActions } from '../_actions';
 import config from 'config';
 import { Modal } from 'react-bootstrap';
 import { history } from '../_helpers';
-import { DropdownButton, MenuItem, CustomMenu, CustomToggle, Dropdown } from 'react-bootstrap'; 
+import { DropdownButton, MenuItem, CustomMenu, CustomToggle, Dropdown } from 'react-bootstrap';
 
 
 class Header extends React.Component {
@@ -20,54 +20,16 @@ class Header extends React.Component {
             featureListsgift: [],
         }
     }
-    goToProfile() {
-        history.push("/editCompany")
-    }
-
-    logout() {
-        localStorage.setItem("user", null);
-    }
-
-    goToTeamMembers() {
-        history.push("/TeamMembers");
-    }
-
-    goTpProfileUpdate() {
-        history.push("/profileUpdate");
-    }
-    cancel() {
-        history.push("/termsandclauses");
-    }
-
-    featurelist() {
-        history.push("/featureslist");
-    }
-
-    componentWillReceiveProps(props) { 
+    componentWillReceiveProps(props) {
 
     }
 
 
-    componentDidMount() { 
-    } 
+    componentDidMount() {
+    }
 
 
     render() {
-        if (this.state.featureListsgift.length > 0) {
-            console.log("0000000000000", this.state.featureListsgift[0].title);
-        }
-        let location = window.location.pathname;
-        const userClass = location.match(/^\/user/) || location.match(/^\/adduser/) || location.match(/^\/viewuser/) ? "active" : "";
-        const dashboardClass = location.match(/^\/dashboard/) || location.match(/^\/acknowledge/) || location.match(/^\/viewdeed/)
-            || location.match(/^\/editdeed/) || location.match(/^\/adddeed/) || location.match(/^\/dashboards/) ? "active" : "";
-        const deedUpdateClass = location.match(/^\/deedupdate/) ? "active" : "";
-        const companiesClass = location.match(/^\/companies/) || location.match(/^\/addcompany/) || location.match(/^\/directors/)
-            || location.match(/^\/adddirector/) || location.match(/^\/editcompany/)
-            || location.match(/^\/editcompany/) || location.match(/^\/company/) ? "active" : "";
-        const termsandclauseClass = location.match(/^\/termsandclauses/) || location.match(/^\/viewclause/)
-            || location.match(/^\/editclause/) || location.match(/^\/editterm/) || location.match(/^\/viewterm/)
-            || location.match(/^\/addclause/) || location.match(/^\/addterm/) ? "active" : "";
-        const settingClass = location.match(/^\/settings/) || location.match(/^\/addminutetemplate/) || location.match(/^\/editminutetemplate/) || location.match(/^\/viewminutetemplate/) ? "active" : "";
         return (
 
             <header className="header-sec">
@@ -81,9 +43,9 @@ class Header extends React.Component {
                                     <span className="icon-bar middle-bar"></span>
                                     <span className="icon-bar bottom-bar"></span>
                                 </button>
-                                <a className="navbar-brand brand_logo" href="/dashboard"> 
+                                <a className="navbar-brand brand_logo" href="/dashboard">
                                 </a>
-                                <a className="navbar-brand brand_logo" href="/outofstock"> 
+                                <a className="navbar-brand brand_logo" href="/outofstock">
                                 </a>
                             </div> {/*/.  navbar-header */}
 
@@ -113,10 +75,10 @@ class Header extends React.Component {
                                     <li className="profile_block dropdown">
 
                                         <DropdownButton id="none" title={<a   >
-                                             Welcome
-                                        </a>}> 
+                                            Settings
+                                        </a>}>
                                             <MenuItem onClick={this.logout} href="/login">Logout</MenuItem>
-                                        </DropdownButton> 
+                                        </DropdownButton>
                                     </li>
                                 </ul>
                             </div>
@@ -127,14 +89,9 @@ class Header extends React.Component {
                             {/* .navbar-collapse */}
                             <div className="collapse navbar-collapse header_menu" id="header_menu">
                                 <ul className="nav navbar-nav nav_main_menu">
-                                    <li className={dashboardClass}><a href="/dashboard"><i className="fa fa-tachometer" aria-hidden="true"></i> Dashboard</a></li>
-                                    {/* {this.state.isStakeHolder ? ("") : (<li className={companiesClass} ><a href="/companies"><i className="fa fa-building-o" aria-hidden="true"></i> Companies</a></li>)}
-                                    {this.state.isStakeHolder ? ("") : (<li className={userClass} ><a href="/users"><i className="fa fa-user-circle-o" aria-hidden="true"></i> Users</a></li>)}
-                                    {this.state.isStakeHolder ? ("") : (<li className={termsandclauseClass} ><a href="/termsandclauses"><i className="fa fa-clipboard" aria-hidden="true"></i> Clauses & Terms </a></li>)}
-                                    <li className={deedUpdateClass} ><a href="/deedupdate"><i className="fa fa-bolt" aria-hidden="true"></i> Deed Update </a> </li>
-                                    <li className={settingClass}><a href="/settings"><i className="fa fa-cog" aria-hidden="true"></i> Settings</a></li> */}
-                                    {/* <li><a onClick={this.logout} href="/login"><i className="fa fa-cog" aria-hidden="true"></i> Logout</a></li> */}
+                                    <li className="active"><a href="/rolea"><i className="fa fa-tachometer" aria-hidden="true"></i> Roles</a></li>
                                 </ul>
+                                
                             </div>{/* /.navbar-collapse */}
                         </div>
                     </div>{/*/. nav_menu_block */}

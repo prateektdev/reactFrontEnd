@@ -1,24 +1,23 @@
-import { bookConstants, } from '../_constants';
-import { bookService } from '../_services';
+import { roleConstants } from '../_constants';
+import { roleService } from '../_services';
 import { alertActions } from '.';
 import { history } from '../_helpers';
 
-export const bookActions = {
+export const roleActions = {
     getAllRoles,
-    addBook,
-    getBook,
-    editBook,
-    deleteBook,
-    getOutOfStockBooks
+    addRole,
+    getRole,
+    editRole,
 };
 
 function getAllRoles() {
     return dispatch => {
         dispatch(request());
-        bookService.getAllRoles()
+        roleService.getAllRoles()
             .then(
-                books => {
-                    dispatch(success(books));
+                roles => {
+                    console.log('here .........')
+                    dispatch(success(roles));
                     dispatch(alertActions.success('done'));
                 },
                 error => {
@@ -27,35 +26,15 @@ function getAllRoles() {
                 }
             );
     };
-    function request(books) { return { type: bookConstants.BOOK_LIST_REQUEST, books } }
-    function success(books) { return { type: bookConstants.BOOK_LIST_SUCCESS, books } }
-    function failure(error) { return { type: bookConstants.BOOK_LIST_FAILURE, error } }
+    function request(roles) { return { type: roleConstants.ROLE_LIST_REQUEST, roles } }
+    function success(roles) { return { type: roleConstants.ROLE_LIST_SUCCESS, roles } }
+    function failure(error) { return { type: roleConstants.ROLE_LIST_FAILURE, error } }
 }
 
-function getOutOfStockBooks() {
-    return dispatch => {
-        dispatch(request());
-        bookService.getOutOfStockBooks()
-            .then(
-                books => {
-                    dispatch(success(books));
-                    dispatch(alertActions.success('done'));
-                },
-                error => {
-                    dispatch(failure('error.'));
-                    dispatch(alertActions.error('Error: Those credentials don’t look right. Please try again.'));
-                }
-            );
-    };
-    function request(books) { return { type: bookConstants.BOOK_LIST_REQUEST, books } }
-    function success(books) { return { type: bookConstants.BOOK_LIST_SUCCESS, books } }
-    function failure(error) { return { type: bookConstants.BOOK_LIST_FAILURE, error } }
-}
-
-function addBook(book) {
+function addRole(book) {
     return dispatch => {
         dispatch(request(book));
-        bookService.addBook(book)
+        roleService.addBook(book)
             .then(
                 book => {
                     dispatch(success(book));
@@ -67,15 +46,15 @@ function addBook(book) {
                 }
             );
     };
-    function request(book) { return { type: bookConstants.BOOK_CREATE_REQUEST, book } }
-    function success(book) { return { type: bookConstants.BOOK_CREATE_SUCCESS, book } }
-    function failure(error) { return { type: bookConstants.BOOK_CREATE_FAILURE, error } }
+    function request(book) { return { type: roleConstants.ROLE_CREATE_REQUEST, book } }
+    function success(book) { return { type: roleConstants.ROLE_CREATE_SUCCESS, book } }
+    function failure(error) { return { type: roleConstants.ROLE_CREATE_FAILURE, error } }
 }
 
-function getBook(book_id) {
+function getRole(book_id) {
     return dispatch => {
         dispatch(request(book_id));
-        bookService.getBook(book_id)
+        roleService.getBook(book_id)
             .then(
                 book => {
                     console.log("book ",book.data)
@@ -88,15 +67,15 @@ function getBook(book_id) {
                 }
             );
     };
-    function request(book) { return { type: bookConstants.BOOK_DETAILS_REQUEST, book } }
-    function success(book) { return { type: bookConstants.BOOK_DETAILS_SUCCESS, book } }
-    function failure(error) { return { type: bookConstants.BOOK_DETAILS_FAILURE, error } }
+    function request(book) { return { type: roleConstants.ROLE_DETAILS_REQUEST, book } }
+    function success(book) { return { type: roleConstants.ROLE_DETAILS_SUCCESS, book } }
+    function failure(error) { return { type: roleConstants.ROLE_DETAILS_FAILURE, error } }
 }
 
-function editBook(book) {
+function editRole(book) {
     return dispatch => {
         dispatch(request(book));
-        bookService.editBook(book)
+        roleService.editBook(book)
             .then(
                 editbook => {
                     dispatch(success(editbook));
@@ -109,28 +88,7 @@ function editBook(book) {
                 }
             );
     };
-    function request(editbook) { return { type: bookConstants.BOOK_UPDATE_REQUEST, editbook } }
-    function success(editbook) { return { type: bookConstants.BOOK_UPDATE_SUCCESS, editbook } }
-    function failure(error) { return { type: bookConstants.BOOK_UPDATE_FAILURE, error } }
-}
-
-function deleteBook(book_id) {
-    return dispatch => {
-        dispatch(request(book_id));
-        bookService.deleteBook(book_id)
-            .then(
-                deletebook => {
-                    dispatch(success(deletebook));
-                    dispatch(alertActions.success('Deleted Successfully'));
-                    history.push("/dashbord");
-                },
-                error => {
-                    dispatch(failure('Incorrect Credentials.'));
-                    dispatch(alertActions.error('Error: Those credentials don’t look right. Please try again.'));
-                }
-            );
-    };
-    function request(deletebook) { return { type: bookConstants.BOOK_DELETE_REQUEST, deletebook } }
-    function success(deletebook) { return { type: bookConstants.BOOK_DELETE_SUCCESS, deletebook } }
-    function failure(error) { return { type: bookConstants.BOOK_DELETE_FAILURE, error } }
+    function request(editbook) { return { type: roleConstants.ROLE_UPDATE_REQUEST, editbook } }
+    function success(editbook) { return { type: roleConstants.ROLE_UPDATE_SUCCESS, editbook } }
+    function failure(error) { return { type: roleConstants.ROLE_UPDATE_FAILURE, error } }
 }

@@ -1,12 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import config from 'config';
 import { Header } from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
-import { userActions, bookActions } from '../_actions/index.js';
+import { bookActions } from '../_actions/index.js';
 import { history } from '../_helpers';
+import { Checkbox } from 'react-bootstrap';
 
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel,
+} from 'react-accessible-accordion';
 class AddRole extends React.PureComponent {
 
 
@@ -14,67 +20,82 @@ class AddRole extends React.PureComponent {
         super(props);
 
         this.state = {
-            book: { 
-                title:"",
-                isbn:"",
-                category:"",
-                stock:0
+            role: {
+                rolename: '',
+                rolePermissionList: [],
+                status: '',
+                permission: JSON.parse(localStorage.getItem('permission'))
             },
-            errorCompany: {
-                company_name: "",
-                company_admin: "",
-                company_number: "",
-                address: "",
-                admin_email: "",
-                admin_id: ""
-            },
-            users: []
-
+            active: false,
+            permission: JSON.parse(localStorage.getItem('permission'))
         }
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this); 
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleStatusChange = this.handleStatusChange.bind(this);
+        this.mapPermissiontoJSONObject = this.mapPermissiontoJSONObject.bind(this);
+    }
+
+    componentDidMount() {
+        this.mapPermissiontoJSONObject();
+    }
+
+    mapPermissiontoJSONObject() {
+        let perm = JSON.parse(localStorage.getItem('permission'));
+        let permission = [];
+        perm.map((prod, prodIndex) => {
+            let product = {
+                productName: prod.productName,
+                features: []
+            };
+            prod.features.map((feat, featIndex) => {
+                let feature = {
+                    name: feat.name,
+                    permission: []
+                }
+                feat.permission.map((perm, permIndex) => {
+                    let permission = {
+                        name: perm,
+                        checked: true
+                    }
+                    feature.permission.push(permission)
+                })
+                product.features.push(feature);
+            })
+            permission.push(product);
+        })
+        this.setState({ permission: permission });
     }
 
     handleChange(event) {
         const { name, value } = event.target;
-        const { book } = this.state;
+        const { role } = this.state;
 
         this.setState({
-            book: {
-                ...book,
+            role: {
+                ...role,
                 [name]: value
             }
         });
-
     }
 
-    componentWillReceiveProps(props) { 
-        if(props.getusers){
-            if(props.getusers.users){
-                this.setState({users:props.getusers.users}) ;
-            }
-        }
+    handleStatusChange(event, productIndex, featureIndex, permissionIndex) {
+        event.preventDefault();
+        let permission = this.state.permission;
+        permission[productIndex].features[featureIndex].permission[permissionIndex].checked = !permission[productIndex].features[featureIndex].permission[permissionIndex].checked;
+        this.setState({ permission: permission, active: !this.state.active })
     }
 
-    componentDidMount() {
-        this.props.dispatch(userActions.getAllUsers()) ;
-    }
- 
     handleSubmit(e) {
         e.preventDefault();
-        let publisher = this.state.users.find((obj)=>obj.id==this.state.book.publisher) ;
-        let author = this.state.users.find((obj)=>obj.id==this.state.book.author) ;
-        let book = {...this.state.book} ;
-        book.author=author ;
-        book.publisher=publisher ;
-        this.props.dispatch(bookActions.addBook(book)); 
+        this.props.dispatch(bookActions.addRole(this.state.role));
 
     }
 
     cancel() {
         history.push("/dashboard");
     }
-    render() { 
+
+    render() {
         return (
             <div>
                 <main className="wrapper">
@@ -85,7 +106,7 @@ class AddRole extends React.PureComponent {
                                 <div className="head_ttl_lft">
                                     <div className="main_title">
                                         <h2>Add Role</h2>
-                                    </div> 
+                                    </div>
                                 </div>
                             </section>
 
@@ -93,58 +114,83 @@ class AddRole extends React.PureComponent {
                                 <div className="white_box">
                                     <form className="theme-form" onSubmit={this.handleSubmit}>
 
-                                        <div className="upd_cmp_details"> 
+                                        <div className="upd_cmp_details">
                                             <div className="upd_cmp_desc">
                                                 <div className="row">
                                                     <div className="form-group col-sm-6">
-                                                        <label className="lable-cntrl">Book Title &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-danger">{this.state.errorCompany.company_name.length >= 1 ? this.state.errorCompany.company_name : ""}</span></label>
-                                                        <input type="text" name="title" defaultValue={this.state.book.title} onChange={this.handleChange} className="form-control" placeholder="" />
+                                                        <label className="lable-cntrl">Role Name </label>
+                                                        <input type="text" name="rolename" defaultValue={this.state.role.name} onChange={this.handleChange} className="form-control" placeholder="" />
                                                     </div>
-                                                    <div className="form-group col-sm-6">
-                                                        <label className="lable-cntrl">Book Author</label>
-                                                        <select   value={this.state.book.author} name="author" onChange={this.handleChange} className="form-control">
-                                                        <option></option>
-                                                        {
-                                                            this.state.users.map((user, index) => {
-                                                                return (<option key={index} value={user.id}>{user.firstname + " " + user.lastname}</option>);
-                                                            })
-                                                        }
-                                                        </select>
-                                                    </div>
-                                                </div><div className="row"><div className="form-group col-sm-6">
-                                                    <label className="lable-cntrl">Book Publisher</label>
-                                                    <select   value={this.state.book.publisher} name="publisher" onChange={this.handleChange} className="form-control">
-                                                    <option></option>
-                                                        {
-                                                            this.state.users.map((user, index) => {
-                                                                return (<option key={index} value={user.id}>{user.firstname + " " + user.lastname}</option>);
-                                                            })
-                                                        }
-                                                        
-                                                    </select>
-                                                </div> <div className="form-group col-sm-6">
-                                                        <label className="lable-cntrl">Book Category</label>
-                                                        <select   value={this.state.book.category} name="category" onChange={this.handleChange} className="form-control">
-                                                           
-                                                            <option value="0">Category1</option>
-                                                            <option value="1">Category2</option>
-                                                            <option selected value="2">Category3</option>
-                                                        </select>
-                                                    </div>
+
                                                 </div>
+
 
                                                 <div className="row">
                                                     <div className="form-group col-sm-6">
-                                                        <label className="lable-cntrl">ISBN <span className="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{this.state.errorCompany.company_number.length >= 1 ? this.state.errorCompany.company_number : ""}</span></label>
-                                                        <input type="text" name="isbn" value={this.state.book.isbn} onChange={this.handleChange} className="form-control" placeholder="" />
+                                                        <label className="lable-cntrl">Role Type </label>
+
+                                                        <Accordion allowZeroExpanded={true}>
+                                                            {
+                                                                this.state.permission.map((permission, productIndex) => {
+                                                                    return (<AccordionItem key={productIndex}> <AccordionItemHeading>
+                                                                        <AccordionItemButton>
+                                                                            <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{permission.productName}</b>
+                                                                        </AccordionItemButton>
+                                                                    </AccordionItemHeading>
+                                                                        <AccordionItemPanel>
+                                                                            <div>
+                                                                                <br />
+                                                                                {
+                                                                                    permission.features.map((feature, featureIndex) => {
+                                                                                        return (
+                                                                                            <Accordion allowMultipleExpanded={true} allowZeroExpanded={true} key={
+                                                                                                featureIndex
+                                                                                            }>
+                                                                                                <AccordionItem> <AccordionItemHeading>
+                                                                                                    <AccordionItemButton>
+                                                                                                        <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{feature.name}</strong>
+                                                                                                    </AccordionItemButton>
+                                                                                                </AccordionItemHeading>
+                                                                                                    <AccordionItemPanel>
+                                                                                                        <div>
+                                                                                                            <br />
+                                                                                                            <div className="row">
+                                                                                                                {
+                                                                                                                    feature.permission.map((perm, permisionIndex) => {
+                                                                                                                        return (
+
+                                                                                                                            <div className="form-group col-sm-3" key={permisionIndex}>
+                                                                                                                                <label className="lable-cntrl">{perm.name}</label>
+                                                                                                                                {!this.state.active && <img src="assets/images/checked-checkbox-icon.png" height="30px" onClick={(event) => this.handleStatusChange(event,
+                                                                                                                                    productIndex,
+                                                                                                                                    featureIndex,
+                                                                                                                                    permisionIndex)} width="30px" />}
+                                                                                                                                {this.state.active && <img src="assets/images/unchecked-checkbox-icon-14.png" height="30px" onClick={(event) => this.handleStatusChange(event,
+                                                                                                                                    productIndex,
+                                                                                                                                    featureIndex,
+                                                                                                                                    permisionIndex)} width="30px" />}
+
+                                                                                                                            </div>
+
+
+                                                                                                                        )
+                                                                                                                    })
+                                                                                                                }
+                                                                                                            </div></div>
+                                                                                                    </AccordionItemPanel>
+                                                                                                </AccordionItem>
+                                                                                            </Accordion>)
+                                                                                    })
+                                                                                }
+                                                                            </div>
+                                                                        </AccordionItemPanel>
+                                                                    </AccordionItem>)
+                                                                })
+                                                            }
+                                                        </Accordion>
                                                     </div>
-                                                    <div className="form-group col-sm-6">
-                                                        <label className="lable-cntrl">Stock</label>
-                                                        <input type="text" name="stock" value={this.state.book.stock} onChange={this.handleChange} className="form-control" placeholder="" />
-                                                    </div>
+
                                                 </div>
- 
-                                                
                                             </div>
                                         </div>
                                         <div className="form-submit">
@@ -163,13 +209,11 @@ class AddRole extends React.PureComponent {
     }
 }
 function mapStateToProps(state) {
-    const { authentication, getusers, updateattachment, editcompany } = state;
+    const { authentication, addRole } = state;
     const { user } = authentication;
     return {
         user,
-        getusers,
-        editcompany,
-        updateattachment
+        addRole
     };
 }
 

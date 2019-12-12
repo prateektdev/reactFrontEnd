@@ -4,13 +4,10 @@ import { connect } from 'react-redux';
 
 import { history } from '../_helpers'; 
 import { PrivateRoute } from '../_components'; 
-import { LoginPage } from '../LoginPage';
-import { SignUpPage } from '../SignUpPage'; 
+import { LoginPage } from '../LoginPage'; 
 import { Roles } from '../Roles';  
 import { alertActions } from '../_actions';
-import { AddRole } from '../AddRole';
-import { EditBook } from '../EditBook/EditBook';
-import { StockBook } from '../StockBook/StockBook';
+import { AddRole } from '../AddRole'; 
 
 //import { Users } from '../Users';
 // import { Activation } from '../Activation';
@@ -30,20 +27,17 @@ class App extends React.Component {
         const { alert } = this.props;
         return (
             <div  >
-                <div  >
+                <div>
                     
                     { alert!=undefined?alert.message &&
                         <div className={`alert ${alert.type}`}>{alert.message}</div>:""
                     }
                     <Router history={history}>
                         <div>
-                            <PrivateRoute exact path="/" component={Roles} /> 
-                            <PrivateRoute exact path="/outofstock" component={StockBook} /> 
+                            <PrivateRoute exact path="/" component={Roles} />  
                             <PrivateRoute exact path="/dashboard" component={Roles} /> 
-                            <PrivateRoute exact path="/addrole" component={AddRole} />    
-                            <PrivateRoute exact path="/editbook" component={EditBook} />    
+                            <PrivateRoute exact path="/addrole" component={AddRole} />     
                             <Route path="/login" component={LoginPage} />
-                            <Route path="/signup" component={SignUpPage} />   
                         </div>
                     </Router> 
                 </div>

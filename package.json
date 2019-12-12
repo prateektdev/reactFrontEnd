@@ -8,6 +8,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
+    "bootstrap-4-react": "0.0.59",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
     "font-awesome": "^4.7.0",
@@ -19,6 +20,7 @@
     "postcss-calc": "^7.0.1",
     "postcss-preset-env": "^6.5.0",
     "react": "^16.0.0",
+    "react-accessible-accordion": "^3.0.1",
     "react-bootstrap": "^0.32.4",
     "react-data-components": "^1.2.0",
     "react-datepicker": "^2.1.0",

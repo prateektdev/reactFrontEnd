@@ -1,72 +1,50 @@
-import config from 'config'; 
+import config from 'config';
 import axios from 'axios';
-var token = localStorage.getItem("token"); 
+var token = localStorage.getItem("token");
 
-export const bookService = {   
-    getAllRoles,  
-    addBook, 
-    getBook,   
-    editBook,    
-    deleteBook,  
-    getOutOfStockBooks  
-}; 
-  
-  
+export const roleService = {
+    getAllRoles,
+    addRole,
+    getRole,
+    editRole,
+};
+
+
 function getAllRoles() {
     return axios({
         method: 'GET',
-        url: `${config.apiUrl}/role/get/all`,
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token }
+        url: `${config.apiUrl}/role/get/list-of-role`,
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
     }).then(handleResponse);
-} 
+}
 
-function getOutOfStockBooks() {
-    return axios({
-        method: 'GET',
-        url: `${config.apiUrl}/rest/book/getoutofstockbooks`,
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token }
-    }).then(handleResponse);
-} 
-
-function addBook(book) {
+function addRole(role) {
     return axios({
         method: 'POST',
-        url: `${config.apiUrl}/rest/book/create`,
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token },
-        data: JSON.stringify(book)
+        url: `${config.apiUrl}/role/create/new/role`,
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        data: JSON.stringify(role)
     }).then(handleResponse);
 }
-function getBook(book_id) {
+function getRole(role_id) {
     return axios({
         method: 'GET',
-        url: `${config.apiUrl}/rest/book/get/`+book_id,
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token }
+        url: `${config.apiUrl}/role/get/details/` + role_id,
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }
     }).then(handleResponse);
 }
-function editBook(book) {
+function editRole(role) {
     return axios({
         method: 'POST',
-        url: `${config.apiUrl}/rest/book/edit`,
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token },
-        data: JSON.stringify(book)
+        url: `${config.apiUrl}/role/update/role`,
+        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+        data: JSON.stringify(role)
     }).then(handleResponse);
 }
-function deleteBook(book_id) {
-    return axios({
-        method: 'GET',
-        url: `${config.apiUrl}/rest/book/delete/`+book_id,
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer '+token }
-    }).then(handleResponse);
-}
- 
- 
-// handle Response
 
 function handleResponse(response) {
-
     console.log('response', response);
-
-    if (response.status == 200||response.status == 201) {
+    if (response.status == 200 || response.status == 201) {
         return response;
     } else {
         const error = (data && data.message) || response.statusText;
