@@ -13,7 +13,7 @@
     "datatables.net-dt": "^1.10.19",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
-    "jquery": "^3.3.1",
+    "jquery": "^3.4.0",
     "mgr-pdf-viewer-react": "^1.0.1",
     "multi-select-react": "^0.1.8",
     "postcss": "^7.0.7",
