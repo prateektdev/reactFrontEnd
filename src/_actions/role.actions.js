@@ -31,13 +31,13 @@ function getAllRoles() {
     function failure(error) { return { type: roleConstants.ROLE_LIST_FAILURE, error } }
 }
 
-function addRole(book) {
+function addRole(role) {
     return dispatch => {
-        dispatch(request(book));
-        roleService.addBook(book)
+        dispatch(request(role));
+        roleService.addRole(role)
             .then(
-                book => {
-                    dispatch(success(book));
+                role => {
+                    dispatch(success(role));
                     history.push("/dashboard");
                 },
                 error => {
@@ -46,41 +46,40 @@ function addRole(book) {
                 }
             );
     };
-    function request(book) { return { type: roleConstants.ROLE_CREATE_REQUEST, book } }
-    function success(book) { return { type: roleConstants.ROLE_CREATE_SUCCESS, book } }
+    function request(role) { return { type: roleConstants.ROLE_CREATE_REQUEST, role } }
+    function success(role) { return { type: roleConstants.ROLE_CREATE_SUCCESS, role } }
     function failure(error) { return { type: roleConstants.ROLE_CREATE_FAILURE, error } }
 }
 
-function getRole(book_id) {
+function getRole(role_id) {
     return dispatch => {
-        dispatch(request(book_id));
-        roleService.getBook(book_id)
+        dispatch(request(role_id));
+        roleService.getRole(role_id)
             .then(
-                book => {
-                    console.log("book ",book.data)
-                    dispatch(success(book));
-                    history.push("/editbook");
+                role => {
+                    dispatch(success(role));
+                    history.push("/role");
                 },
                 error => {
-                    dispatch(failure('Error in fetching book details.'));
-                    dispatch(alertActions.error('Error in fetching book details.'));
+                    dispatch(failure('Error in fetching role details.'));
+                    dispatch(alertActions.error('Error in fetching role details.'));
                 }
             );
     };
-    function request(book) { return { type: roleConstants.ROLE_DETAILS_REQUEST, book } }
-    function success(book) { return { type: roleConstants.ROLE_DETAILS_SUCCESS, book } }
+    function request(role) { return { type: roleConstants.ROLE_DETAILS_REQUEST, role } }
+    function success(role) { return { type: roleConstants.ROLE_DETAILS_SUCCESS, role } }
     function failure(error) { return { type: roleConstants.ROLE_DETAILS_FAILURE, error } }
 }
 
-function editRole(book) {
+function editRole(role) {
     return dispatch => {
-        dispatch(request(book));
-        roleService.editBook(book)
+        dispatch(request(role));
+        roleService.editRole(role)
             .then(
-                editbook => {
-                    dispatch(success(editbook));
+                editrole => {
+                    dispatch(success(editrole));
                     dispatch(alertActions.success('Updated Successfully.'));
-                    history.push("/dashboard");
+                    history.push("/");
                 },
                 error => {
                     dispatch(failure('Incorrect Credentials.'));
@@ -88,7 +87,7 @@ function editRole(book) {
                 }
             );
     };
-    function request(editbook) { return { type: roleConstants.ROLE_UPDATE_REQUEST, editbook } }
-    function success(editbook) { return { type: roleConstants.ROLE_UPDATE_SUCCESS, editbook } }
+    function request(editrole) { return { type: roleConstants.ROLE_UPDATE_REQUEST, editrole } }
+    function success(editrole) { return { type: roleConstants.ROLE_UPDATE_SUCCESS, editrole } }
     function failure(error) { return { type: roleConstants.ROLE_UPDATE_FAILURE, error } }
 }

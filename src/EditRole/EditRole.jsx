@@ -12,7 +12,7 @@ import {
     AccordionItemButton,
     AccordionItemPanel,
 } from 'react-accessible-accordion';
-class AddRole extends React.PureComponent {
+class EditRole extends React.Component {
 
 
     constructor(props) {
@@ -21,6 +21,7 @@ class AddRole extends React.PureComponent {
         this.state = {
             role: {
                 rolename: '',
+                roleid:0,
                 rolePermissionList: [],
                 status: '',
                 permission: JSON.parse(localStorage.getItem('permission'))
@@ -35,14 +36,28 @@ class AddRole extends React.PureComponent {
         this.fillPermissionInRole = this.fillPermissionInRole.bind(this);
     }
 
+    componentWillReceiveProps(props) {
+        console.log(props)
+        if (props.getRole) {
+            if (props.getRole.role) {
+                console.log('here', props.getRole.role[0])
+            }
+        }
+    }
+
     componentDidMount() {
-        this.mapPermissiontoJSONObject();
+        console.log('props', this.props)
+        if (this.props.getRole)
+            this.setState({ role: this.props.getRole.role[0] }, () => {
+                this.mapPermissiontoJSONObject();
+            })
     }
 
     mapPermissiontoJSONObject() {
-        let perm = JSON.parse(localStorage.getItem('permission'));
+        let perm =  JSON.parse(this.state.role.rolePermissionList);
+        let rolePermissions = JSON.parse(this.state.role.rolePermissionList);
         let permission = [];
-        perm.map((prod, prodIndex) => {
+        perm.map((prod, prodIndex) => { 
             let product = {
                 productName: prod.productName,
                 features: []
@@ -52,10 +67,10 @@ class AddRole extends React.PureComponent {
                     name: feat.name,
                     permission: []
                 }
-                feat.permission.map((perm, permIndex) => {
+                feat.permission.map((perm, permIndex) => { 
                     let permission = {
                         name: perm,
-                        checked: false
+                        checked: true//rolePermissions[prodIndex].features[featIndex].permission.contains(perm)
                     }
                     feature.permission.push(permission)
                 })
@@ -95,15 +110,15 @@ class AddRole extends React.PureComponent {
             permission += product
         })
         if (permission.endsWith(","))
-        permission = permission.substring(0, permission.length - 1)
+            permission = permission.substring(0, permission.length - 1)
         const { role } = this.state
         this.setState({
             role: {
                 ...role,
-                rolePermissionList: permission+']'
+                rolePermissionList: permission + ']'
             }
-        },()=>{
-            this.props.dispatch(roleActions.addRole(this.state.role));
+        }, () => {
+            this.props.dispatch(roleActions.editRole(this.state.role));
         })
     }
     handleChange(event) {
@@ -139,7 +154,7 @@ class AddRole extends React.PureComponent {
         //         rolePermissionList: "[ProductFeaturesList [productName=Service tiketing2, featuresWithPermissionList=[PermissionList [featureName=Dashboard, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard2, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard3, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]]]], ProductFeaturesList [productName=Service tiketing2, featuresWithPermissionList=[PermissionList [featureName=Dashboard, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard2, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard3, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]]]]]"
         //     }
         // }, () => {
-           
+
         // })
 
 
@@ -159,7 +174,7 @@ class AddRole extends React.PureComponent {
                             <section className="head_ttl_block">
                                 <div className="head_ttl_lft">
                                     <div className="main_title">
-                                        <h2>Add Role</h2>
+                                        <h2>Role Details</h2>
                                     </div>
                                 </div>
                             </section>
@@ -263,13 +278,14 @@ class AddRole extends React.PureComponent {
     }
 }
 function mapStateToProps(state) {
-    const { authentication, addRole } = state;
+    const { authentication, getRole, editRole } = state;
     const { user } = authentication;
     return {
         user,
-        addRole
+        getRole,
+        editRole
     };
 }
 
-const connectedAddRole = connect(mapStateToProps)(AddRole);
-export { connectedAddRole as AddRole };
+const connectedEditRole = connect(mapStateToProps)(EditRole);
+export { connectedEditRole as EditRole };

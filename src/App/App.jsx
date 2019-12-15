@@ -8,6 +8,7 @@ import { LoginPage } from '../LoginPage';
 import { Roles } from '../Roles';  
 import { alertActions } from '../_actions';
 import { AddRole } from '../AddRole'; 
+import { EditRole } from '../EditRole/EditRole';
 
 //import { Users } from '../Users';
 // import { Activation } from '../Activation';
@@ -36,7 +37,8 @@ class App extends React.Component {
                         <div>
                             <PrivateRoute exact path="/" component={Roles} />  
                             <PrivateRoute exact path="/dashboard" component={Roles} /> 
-                            <PrivateRoute exact path="/addrole" component={AddRole} />     
+                            <PrivateRoute exact path="/addrole" component={AddRole} />
+                            <PrivateRoute exact path="/role" component={EditRole} />
                             <Route path="/login" component={LoginPage} />
                         </div>
                     </Router> 

@@ -10,10 +10,43 @@ class Roles extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            roles: []
+            roles: [{
+                createdat: null,
+                createdby: null,
+                customerid: 1,
+                lasteditby: null,
+                lasteditdate: null,
+                permission: "",
+                roleid: 4947,
+                rolename: "Administrator",
+                roletype: "root",
+                status: "Active",
+            },{
+                createdat: null,
+                createdby: null,
+                customerid: 1,
+                lasteditby: null,
+                lasteditdate: null,
+                permission: "",
+                roleid: 4945,
+                rolename: "Administrator",
+                roletype: "root",
+                status: "Active",
+            },{
+                createdat: null,
+                createdby: null,
+                customerid: 1,
+                lasteditby: null,
+                lasteditdate: null,
+                permission: "",
+                roleid: 4946,
+                rolename: "Administrator",
+                roletype: "root",
+                status: "Active",
+            }]
         },
 
-        this.editRole = this.editRole.bind(this);
+            this.editRole = this.editRole.bind(this);
         this.addRole = this.addRole.bind(this);
     }
 
@@ -30,7 +63,7 @@ class Roles extends React.Component {
     }
 
     editRole(id) {
-        this.props.dispatch(bookActions.getBook(id));
+        this.props.dispatch(roleActions.getRole(id));
     }
     addRole() {
         history.push("/addrole");

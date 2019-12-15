@@ -12,13 +12,7 @@ class Header extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            user: JSON.parse(localStorage.getItem("user")) != undefined ? JSON.parse(localStorage.getItem("user")).user : {},
-            isAdmin: JSON.parse(localStorage.getItem("user")) != undefined ? JSON.parse(localStorage.getItem("user")).user.user_type == 1 : false,
-            isDeedProvider: JSON.parse(localStorage.getItem("user")) != undefined ? JSON.parse(localStorage.getItem("user")).user.user_type == 2 : false,
-            isStakeHolder: JSON.parse(localStorage.getItem("user")) != undefined ? JSON.parse(localStorage.getItem("user")).user.user_type == 4 : false,
-            featureListsgift: [],
-        }
+       
     }
     componentWillReceiveProps(props) {
 
@@ -43,10 +37,8 @@ class Header extends React.Component {
                                     <span className="icon-bar middle-bar"></span>
                                     <span className="icon-bar bottom-bar"></span>
                                 </button>
-                                <a className="navbar-brand brand_logo" href="/dashboard">
-                                </a>
-                                <a className="navbar-brand brand_logo" href="/outofstock">
-                                </a>
+                                <a className="navbar-brand brand_logo" href="/">
+                                </a> 
                             </div> {/*/.  navbar-header */}
 
                             <div className="nav_user_prof">
@@ -89,7 +81,7 @@ class Header extends React.Component {
                             {/* .navbar-collapse */}
                             <div className="collapse navbar-collapse header_menu" id="header_menu">
                                 <ul className="nav navbar-nav nav_main_menu">
-                                    <li className="active"><a href="/rolea"><i className="fa fa-tachometer" aria-hidden="true"></i> Roles</a></li>
+                                    <li className="active"><a href="/"><i className="fa fa-tachometer" aria-hidden="true"></i> Roles</a></li>
                                 </ul>
                                 
                             </div>{/* /.navbar-collapse */}
