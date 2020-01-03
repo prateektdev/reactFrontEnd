@@ -22,7 +22,6 @@ class AddRole extends React.PureComponent {
             role: {
                 rolename: '',
                 rolePermissionList: [],
-                status: '',
                 permission: JSON.parse(localStorage.getItem('permission'))
             },
             active: false,
@@ -95,14 +94,15 @@ class AddRole extends React.PureComponent {
             permission += product
         })
         if (permission.endsWith(","))
-        permission = permission.substring(0, permission.length - 1)
+            permission = permission.substring(0, permission.length - 1)
         const { role } = this.state
         this.setState({
             role: {
                 ...role,
-                rolePermissionList: permission+']'
+                rolePermissionList: permission + ']'
             }
-        },()=>{
+        }, () => {
+            console.log("role saved : ", this.state.role)
             this.props.dispatch(roleActions.addRole(this.state.role));
         })
     }
@@ -130,19 +130,12 @@ class AddRole extends React.PureComponent {
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('role : ', this.state.role)
-        const { role } = this.state
-        this.fillPermissionInRole();
-        // this.setState({
-        //     role: {
-        //         ...role,
-        //         rolePermissionList: "[ProductFeaturesList [productName=Service tiketing2, featuresWithPermissionList=[PermissionList [featureName=Dashboard, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard2, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard3, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]]]], ProductFeaturesList [productName=Service tiketing2, featuresWithPermissionList=[PermissionList [featureName=Dashboard, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard2, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard3, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]]]]]"
-        //     }
-        // }, () => {
-           
-        // })
-
-
+        const { role } = this.state;
+        role.rolePermissionList = Buffer.from(JSON.stringify(this.state.permission)).toString("base64")
+        delete role.permission;
+        this.props.dispatch(roleActions.addRole(role))
+        this.setState({ role: role });
+        // this.fillPermissionInRole();
     }
 
     cancel() {
