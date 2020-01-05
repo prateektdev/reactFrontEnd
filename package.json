@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open"
+    "dev": "webpack-dev-server --open",
+    "start": "node server.js", 
+    "heroku-postbuild": "webpack -p" 
   },
   "dependencies": {
     "axios": "^0.18.0",
