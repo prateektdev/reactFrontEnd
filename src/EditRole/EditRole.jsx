@@ -13,15 +13,12 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 class EditRole extends React.Component {
-
-
     constructor(props) {
         super(props);
-
         this.state = {
             role: {
                 rolename: '',
-                roleid:0,
+                roleid: 0,
                 rolePermissionList: [],
                 status: '',
                 permission: JSON.parse(localStorage.getItem('permission'))
@@ -47,17 +44,19 @@ class EditRole extends React.Component {
 
     componentDidMount() {
         console.log('props', this.props)
-        if (this.props.getRole)
+        if (this.props && this.props.getRole && this.props.getRole.role) {
             this.setState({ role: this.props.getRole.role[0] }, () => {
+                console.log('maping ')
                 this.mapPermissiontoJSONObject();
             })
+        }
+
     }
 
     mapPermissiontoJSONObject() {
-        let perm =  JSON.parse(this.state.role.rolePermissionList);
-        let rolePermissions = JSON.parse(this.state.role.rolePermissionList);
+        let perm = JSON.parse(localStorage.getItem('permission'));
         let permission = [];
-        perm.map((prod, prodIndex) => { 
+        perm.map((prod, prodIndex) => {
             let product = {
                 productName: prod.productName,
                 features: []
@@ -67,10 +66,10 @@ class EditRole extends React.Component {
                     name: feat.name,
                     permission: []
                 }
-                feat.permission.map((perm, permIndex) => { 
+                feat.permission.map((perm, permIndex) => {
                     let permission = {
                         name: perm,
-                        checked: true//rolePermissions[prodIndex].features[featIndex].permission.contains(perm)
+                        checked: false
                     }
                     feature.permission.push(permission)
                 })
@@ -136,10 +135,10 @@ class EditRole extends React.Component {
     handleStatusChange(event, productIndex, featureIndex, permissionIndex) {
         event.preventDefault();
         let permission = this.state.permission;
-        // console.log('permission before : ', permission[productIndex].features[featureIndex].permission[permissionIndex].checked)
+        console.log('permission before : ', permission[productIndex].features[featureIndex].permission[permissionIndex])
         permission[productIndex].features[featureIndex].permission[permissionIndex].checked = !permission[productIndex].features[featureIndex].permission[permissionIndex].checked;
         this.setState({ permission: permission, active: !this.state.active }, () => {
-            // console.log('permission after: ', permission[productIndex].features[featureIndex].permission[permissionIndex].checked)
+            console.log('permission after: ', permission[productIndex].features[featureIndex].permission[permissionIndex].checked)
         })
     }
 
@@ -200,8 +199,9 @@ class EditRole extends React.Component {
 
                                                         <Accordion allowZeroExpanded={true}>
                                                             {
-                                                                this.state.permission.map((permission, productIndex) => {
+                                                                this.state.permission && this.state.permission.map((permission, productIndex) => {
                                                                     return (<AccordionItem key={productIndex}> <AccordionItemHeading>
+                                                                        
                                                                         <AccordionItemButton>
                                                                             <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{permission.productName}</b>
                                                                         </AccordionItemButton>
@@ -210,7 +210,7 @@ class EditRole extends React.Component {
                                                                             <div>
                                                                                 <br />
                                                                                 {
-                                                                                    permission.features.map((feature, featureIndex) => {
+                                                                                    permission && permission.features && permission.features.map((feature, featureIndex) => {
                                                                                         return (
                                                                                             <Accordion allowMultipleExpanded={true} allowZeroExpanded={true} key={
                                                                                                 featureIndex
@@ -225,9 +225,9 @@ class EditRole extends React.Component {
                                                                                                             <br />
                                                                                                             <div className="row">
                                                                                                                 {
-                                                                                                                    feature.permission.map((perm, permisionIndex) => {
+                                                                                                                    feature && feature.permission && feature.permission.map((perm, permisionIndex) => {
                                                                                                                         return (
-
+                                                                                                                            
                                                                                                                             <div className="form-group col-sm-3" key={permisionIndex}>
                                                                                                                                 <label className="lable-cntrl">{perm.name}</label>
                                                                                                                                 {perm.checked && <img src="assets/images/checked-checkbox-icon.png" height="30px" onClick={(event) => this.handleStatusChange(event,

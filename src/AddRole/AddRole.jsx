@@ -13,8 +13,6 @@ import {
     AccordionItemPanel,
 } from 'react-accessible-accordion';
 class AddRole extends React.PureComponent {
-
-
     constructor(props) {
         super(props);
 

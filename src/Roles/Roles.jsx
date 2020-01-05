@@ -10,40 +10,7 @@ class Roles extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            roles: [{
-                createdat: null,
-                createdby: null,
-                customerid: 1,
-                lasteditby: null,
-                lasteditdate: null,
-                permission: "",
-                roleid: 5,
-                rolename: "Administrator",
-                roletype: "root",
-                status: "Active",
-            },{
-                createdat: null,
-                createdby: null,
-                customerid: 1,
-                lasteditby: null,
-                lasteditdate: null,
-                permission: "",
-                roleid: 6,
-                rolename: "Administrator",
-                roletype: "root",
-                status: "Active",
-            },{
-                createdat: null,
-                createdby: null,
-                customerid: 1,
-                lasteditby: null,
-                lasteditdate: null,
-                permission: "",
-                roleid: 7,
-                rolename: "Administrator",
-                roletype: "root",
-                status: "Active",
-            }]
+            roles: []
         },
 
             this.editRole = this.editRole.bind(this);
