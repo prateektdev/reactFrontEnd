@@ -30,7 +30,6 @@ class EditRole extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleStatusChange = this.handleStatusChange.bind(this);
         this.mapPermissiontoJSONObject = this.mapPermissiontoJSONObject.bind(this);
-        this.fillPermissionInRole = this.fillPermissionInRole.bind(this);
     }
 
     componentWillReceiveProps(props) {
@@ -54,7 +53,7 @@ class EditRole extends React.Component {
     }
 
     mapPermissiontoJSONObject() {
-        let perm = JSON.parse(localStorage.getItem('permission'));
+        let perm = JSON.parse(this.state.role.rolePermissionList);
         let permission = [];
         perm.map((prod, prodIndex) => {
             let product = {
@@ -67,10 +66,7 @@ class EditRole extends React.Component {
                     permission: []
                 }
                 feat.permission.map((perm, permIndex) => {
-                    let permission = {
-                        name: perm,
-                        checked: false
-                    }
+                    let permission = perm
                     feature.permission.push(permission)
                 })
                 product.features.push(feature);
@@ -80,46 +76,6 @@ class EditRole extends React.Component {
         this.setState({ permission: permission });
     }
 
-    fillPermissionInRole() {
-        let perm = this.state.permission;
-        let permission = "[";
-        perm.map((prod, prodIndex) => {
-            let product = "ProductFeaturesList [productName=" + prod.productName + ",featuresWithPermissionList= ["
-            prod.features.map((feat, featIndex) => {
-                let feature = "PermissionList [featureName=" + feat.name + ", permission=["
-                feat.permission.map((perm, permIndex) => {
-                    // console.log(perm.checked,permIndex)
-                    if (permIndex < feat.permission.length) {
-                        if (perm.checked) {
-                            feature += perm.name + ', '
-                        }
-                    }
-                })
-                if (feature.endsWith(", "))
-                    feature = feature.substring(0, feature.length - 2)
-                feature += "]"
-                // console.log(feature)
-                if (featIndex < prod.features.length) {
-                    product += feature + '], '
-                }
-            })
-            if (product.endsWith(", "))
-                product = product.substring(0, product.length - 2)
-            product += "]],"
-            permission += product
-        })
-        if (permission.endsWith(","))
-            permission = permission.substring(0, permission.length - 1)
-        const { role } = this.state
-        this.setState({
-            role: {
-                ...role,
-                rolePermissionList: permission + ']'
-            }
-        }, () => {
-            this.props.dispatch(roleActions.editRole(this.state.role));
-        })
-    }
     handleChange(event) {
         const { name, value } = event.target;
         const { role } = this.state;
@@ -135,27 +91,17 @@ class EditRole extends React.Component {
     handleStatusChange(event, productIndex, featureIndex, permissionIndex) {
         event.preventDefault();
         let permission = this.state.permission;
-        console.log('permission before : ', permission[productIndex].features[featureIndex].permission[permissionIndex])
         permission[productIndex].features[featureIndex].permission[permissionIndex].checked = !permission[productIndex].features[featureIndex].permission[permissionIndex].checked;
-        this.setState({ permission: permission, active: !this.state.active }, () => {
-            console.log('permission after: ', permission[productIndex].features[featureIndex].permission[permissionIndex].checked)
-        })
+        this.setState({ permission: permission, active: !this.state.active })
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        console.log('role : ', this.state.role)
-        const { role } = this.state
-        this.fillPermissionInRole();
-        // this.setState({
-        //     role: {
-        //         ...role,
-        //         rolePermissionList: "[ProductFeaturesList [productName=Service tiketing2, featuresWithPermissionList=[PermissionList [featureName=Dashboard, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard2, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard3, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]]]], ProductFeaturesList [productName=Service tiketing2, featuresWithPermissionList=[PermissionList [featureName=Dashboard, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard2, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]], PermissionList [featureName=Dashboard3, permission=[View Ticket, View1 Ticket, View2 Ticket, View3 Ticket, View4 Ticket]]]]]"
-        //     }
-        // }, () => {
-
-        // })
-
+        const { role } = this.state;
+        role.rolePermissionList = Buffer.from(JSON.stringify(this.state.permission)).toString("base64")
+        delete role.permission;
+        this.props.dispatch(roleActions.editRole(role))
+        this.setState({ role: role });
 
     }
 
@@ -201,7 +147,7 @@ class EditRole extends React.Component {
                                                             {
                                                                 this.state.permission && this.state.permission.map((permission, productIndex) => {
                                                                     return (<AccordionItem key={productIndex}> <AccordionItemHeading>
-                                                                        
+
                                                                         <AccordionItemButton>
                                                                             <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{permission.productName}</b>
                                                                         </AccordionItemButton>
@@ -227,7 +173,7 @@ class EditRole extends React.Component {
                                                                                                                 {
                                                                                                                     feature && feature.permission && feature.permission.map((perm, permisionIndex) => {
                                                                                                                         return (
-                                                                                                                            
+
                                                                                                                             <div className="form-group col-sm-3" key={permisionIndex}>
                                                                                                                                 <label className="lable-cntrl">{perm.name}</label>
                                                                                                                                 {perm.checked && <img src="assets/images/checked-checkbox-icon.png" height="30px" onClick={(event) => this.handleStatusChange(event,

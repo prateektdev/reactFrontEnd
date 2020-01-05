@@ -119,10 +119,8 @@ class AddRole extends React.PureComponent {
     handleStatusChange(event, productIndex, featureIndex, permissionIndex) {
         event.preventDefault();
         let permission = this.state.permission;
-        // console.log('permission before : ', permission[productIndex].features[featureIndex].permission[permissionIndex].checked)
         permission[productIndex].features[featureIndex].permission[permissionIndex].checked = !permission[productIndex].features[featureIndex].permission[permissionIndex].checked;
         this.setState({ permission: permission, active: !this.state.active }, () => {
-            // console.log('permission after: ', permission[productIndex].features[featureIndex].permission[permissionIndex].checked)
         })
     }
 
@@ -133,7 +131,6 @@ class AddRole extends React.PureComponent {
         delete role.permission;
         this.props.dispatch(roleActions.addRole(role))
         this.setState({ role: role });
-        // this.fillPermissionInRole();
     }
 
     cancel() {
