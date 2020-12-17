@@ -11,7 +11,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
     "bootstrap-4-react": "0.0.59",
-    "datatables.net": "^1.10.19",
+    "datatables.net": "^1.10.22",
     "datatables.net-dt": "^1.10.19",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
